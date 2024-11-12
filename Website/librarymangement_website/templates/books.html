@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Library Books</h1>
+
+    <!-- Search Form -->
+    <form method="GET" action="{{ url_for('books') }}" class="mb-8">
+        <div class="flex gap-4">
+            <input type="text"
+                   name="search"
+                   value="{{ request.args.get('search', '') }}"
+                   placeholder="Search books..."
+                   class="flex-1 px-4 py-2 border rounded">
+            <button type="submit"
+                    class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <!-- Books Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for book in books %}
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h3 class="text-xl font-semibold mb-2">{{ book.title }}</h3>
+            <p class="text-gray-600 mb-4">by {{ book.author }}</p>
+            <p class="text-gray-500 mb-4 line-clamp-3">{{ book.description }}</p>
+            <div class="flex flex-wrap gap-2">
+                {% if book.google_books_id %}
+                <a href="{{ url_for('read_book', book_id=book.id) }}"
+                   class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    Read Online
+                </a>
+                {% endif %}
+                {% if session.get('user_id') %}
+                <form action="{{ url_for('save_book', book_id=book.id) }}" method="POST" class="inline">
+                    <button type="submit"
+                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                        Save to Library
+                    </button>
+                </form>
+                {% else %}
+                <a href="{{ url_for('login') }}"
+                   class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition">
+                    Login to Save
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

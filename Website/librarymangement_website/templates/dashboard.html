@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}</h1>
+    
+    <!-- Your Library Section -->
+    <section class="mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Your Library</h2>
+        {% if saved_books %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for book in saved_books %}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-2">{{ book.title }}</h3>
+                <p class="text-gray-600 mb-4">by {{ book.author }}</p>
+                <p class="text-gray-500 mb-4 line-clamp-3">{{ book.description }}</p>
+                <div class="flex flex-wrap gap-2">
+                    {% if book.google_books_id %}
+                    <a href="{{ url_for('read_book', book_id=book.id) }}" 
+                       class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Read Online
+                    </a>
+                    {% endif %}
+                    <form action="{{ url_for('remove_saved_book', book_id=book.id) }}" method="POST" class="inline">
+                        <button type="submit" 
+                                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                            Remove
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-gray-600">You haven't saved any books yet. Browse our collection!</p>
+        {% endif %}
+    </section>
+
+    <!-- Recommended Books Section -->
+    <section>
+        <h2 class="text-2xl font-semibold mb-4">Recommended Books</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for book in recommended_books %}
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-xl font-semibold mb-2">{{ book.title }}</h3>
+                <p class="text-gray-600 mb-4">by {{ book.author }}</p>
+                <p class="text-gray-500 mb-4 line-clamp-3">{{ book.description }}</p>
+                <div class="flex flex-wrap gap-2">
+                    {% if book.google_books_id %}
+                    <a href="{{ url_for('read_book', book_id=book.id) }}" 
+                       class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Read Online
+                    </a>
+                    {% endif %}
+                    <form action="{{ url_for('save_book', book_id=book.id) }}" method="POST" class="inline">
+                        <button type="submit" 
+                                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                            Save to Library
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

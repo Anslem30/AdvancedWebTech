@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <!-- Book Header -->
+    <div class="mb-6">
+        <a href="{{ url_for('dashboard') }}"
+           class="text-blue-500 hover:text-blue-600 mb-4 inline-block">
+            &larr; Back to Dashboard
+        </a>
+        <h1 class="text-3xl font-bold mb-2">{{ book.title }}</h1>
+        <p class="text-xl text-gray-600">by {{ book.author }}</p>
+    </div>
+
+    <!-- Book Reader -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        {% if book.google_books_id %}
+        <div class="w-full" style="height: 80vh;">
+            <!-- Google Books Viewer Iframe -->
+            <iframe src="https://books.google.com/books?id={{ book.google_books_id }}&lpg=PP1&pg=PP1&output=embed"
+                    class="w-full h-full border-0"
+                    allowfullscreen>
+            </iframe>
+        </div>
+        {% else %}
+        <div class="text-center py-12">
+            <p class="text-gray-600">Preview not available for this book.</p>
+            <a href="{{ url_for('dashboard') }}"
+               class="text-blue-500 hover:text-blue-600 mt-4 inline-block">
+                Return to Dashboard
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

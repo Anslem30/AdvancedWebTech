@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+
+{% block content %}
+<main id="main-content" class="flex-1 relative w-full min-h-screen py-12" role="main">
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/static/library-image.jpg')" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gray-50 dark:bg-gray-900 bg-opacity-75 dark:bg-opacity-90"></div>
+    
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
+            <h1 class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-orange-800 drop-shadow-lg text-center mb-8" style="font-family: 'Playfair Display', serif;">
+                Contact Us
+            </h1>
+            
+            <form method="POST" class="space-y-6">
+                <!-- Name Input -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                        Name
+                    </label>
+                    <input type="text" 
+                           name="name" 
+                           id="name" 
+                           required 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                        Email
+                    </label>
+                    <input type="email" 
+                           name="email" 
+                           id="email" 
+                           required 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+
+                <!-- Subject Input -->
+                <div>
+                    <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                        Subject
+                    </label>
+                    <input type="text" 
+                           name="subject" 
+                           id="subject" 
+                           required 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                </div>
+
+                <!-- Message Input -->
+                <div>
+                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-200">
+                        Message
+                    </label>
+                    <textarea name="message" 
+                              id="message" 
+                              rows="6" 
+                              required 
+                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit" 
+                            class="bg-orange-800 text-white px-6 py-3 rounded-md hover:bg-orange-900 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2">
+                        Send Message
+                    </button>
+                </div>
+            </form>
+
+            <!-- Optional: Add contact information -->
+            <div class="mt-12 border-t border-gray-200 dark:border-gray-700 pt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+                    <div class="space-y-2">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Email Us</h2>
+                        <p class="text-gray-600 dark:text-gray-400">support@digitalshelf.com</p>
+                    </div>
+                    <div class="space-y-2">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Call Us</h2>
+                        <p class="text-gray-600 dark:text-gray-400">+447778696202</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
