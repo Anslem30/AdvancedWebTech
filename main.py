@@ -370,4 +370,4 @@ def fetch_books_from_google(query, max_results=40):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
