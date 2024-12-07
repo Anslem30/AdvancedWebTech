@@ -1,15 +1,3 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "./main.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ]
-}
+Flask==2.0.1
+Werkzeug==2.0.1
+Jinja2==3.0.1
