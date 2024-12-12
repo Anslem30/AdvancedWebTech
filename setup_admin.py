@@ -1,4 +1,4 @@
-from main import Flask, app
+from main import app
 from models import db, User
 
 
@@ -19,7 +19,7 @@ def create_admin():
             email='admin@example.com',
             is_admin=True
         )
-        admin.set_password('admin123')  # Change this password!
+        admin.set_password('admin123')  # Default password set for admin, but can be changed
 
         db.session.add(admin)
         db.session.commit()
