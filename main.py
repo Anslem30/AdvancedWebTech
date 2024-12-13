@@ -89,7 +89,7 @@ def dashboard():
                                saved_books=saved_books,
                                recommended_books=recommended_books)
     else:
-        # Redirect to login if user is not authenticated
+        # Redirect to login page if user is not authenticated
         flash('You need to log in to access the dashboard.', 'danger')
         return redirect(url_for('login'))
 
