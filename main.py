@@ -412,6 +412,8 @@ def fetch_books_from_google(query, max_results=40):
         return []
 
 
+    app.debug = False
+
 # Main application entry point
 if __name__ == '__main__':
     app.run()
